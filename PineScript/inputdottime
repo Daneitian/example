@@ -1,0 +1,12 @@
+//@version=5
+strategy(title="Example")
+
+// バックテストの期間を判定
+UseFrom = input.time(defval = timestamp(dateString = "2022-01-01T00:00:00"), group = "バックテストの期間", title = "From")
+UseTo = input.time(defval = timestamp(dateString = "2022-12-31T00:00:00"), group = "バックテストの期間", title = "To")
+isBetween = UseFrom <= time and  time < UseTo
+
+...
+
+if isBetween
+	strategy.entry(...) // バックテスト期間に含まれる場合（isBetweenが True の場合）に、取引をおこなう。
